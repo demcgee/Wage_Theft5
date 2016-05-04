@@ -61,6 +61,7 @@
       <li><a href="enterpaycheck.php"><span style="font-size:1.0em" class="glyphicon glyphicon-barcode"></span><font face="Arial Black"> Enter Paycheck</a></li></font>
       <li class="active"><a href="Makeclaim.php"><span style="font-size:1.0em" class="glyphicon glyphicon-bullhorn"></span><font face="Arial Black"> Make Claim</a></li></font>
       <li><a href="faq_in.php"><span style="font-size:1.0em" class="glyphicon glyphicon-question-sign"></span><font face="Arial Black"> FAQ</a></li></font>
+<li><a href="contactus_in.php"><span style="font-size:1.0em" class="glyphicon glyphicon-phone-alt"></span><font face="Arial Black"> Contact Us</a></li></font>
 	<li><a href="Adminhome.php"><span style="font-size:1.0em" class="glyphicon glyphicon-user"></span><font face="Arial Black"> Admin Dashboard</a></li></font>
     </ul>
     	<ul class="nav navbar-nav navbar-right">

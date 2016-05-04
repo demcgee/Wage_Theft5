@@ -6,29 +6,6 @@
 	include_once("dbutils.php");
 ?>
 
-<?php
-	// Generating pull down menu for employers
-	
-	// connect to database
-	$db = connectDB($DBHost,$DBUser,$DBPasswd,$DBName);
-	
-	// set up my query
-	$query = "SELECT JID, JOB_TITLE FROM job ORDER BY JOB_TITLE;";
-	
-	// run the query
-	$result = queryDB($query, $db);
-	
-	// options for employers
-	$jobOptions = "";
-	
-	// go through all employers and put together pull down menu
-	while ($row = nextTuple($result)) {
-		$jobOptions .= "\t\t\t";
-		$jobOptions .= "<option value='";
-		$jobOptions .= $row['JID'] . "'>" . $row['JOB_TITLE'] . "</option>\n";
-	}
-?>
-
 <html lang="en">
 <head>
   <title>Stop! Wage Theft</title>
@@ -54,34 +31,33 @@
 <nav class="navbar navbar-default">
   <div style = "background:#A9D0F5 !important" class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="Home.php"><font face="Arial Black">Stop! Wage Theft</a></font>
+      <a class="navbar-brand" href="Home_in.php"><font face="Arial Black">Stop! Wage Theft</a></font>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="Home.php"><span style="font-size:1.0em" class="glyphicon glyphicon-home"></span><font face="Arial Black"> Home</a></li></font>
+      <li><a href="Home_in.php"><span style="font-size:1.0em" class="glyphicon glyphicon-home"></span><font face="Arial Black"> Home</a></li></font>
+	  <li><a href="jobform.php"><span style="font-size:1.0em" class="glyphicon glyphicon-briefcase"></span><font face="Arial Black"> Enter Job</a></li></font>
       <li class="active"><a href="enterhours.php"><span style="font-size:1.0em" class="glyphicon glyphicon-time"></span><font face="Arial Black"> Enter Hours</a></li></font>
       <li><a href="enterpaycheck.php"><span style="font-size:1.0em" class="glyphicon glyphicon-barcode"></span><font face="Arial Black"> Enter Paycheck</a></li></font>
       <li><a href="Makeclaim.php"><span style="font-size:1.0em" class="glyphicon glyphicon-bullhorn"></span><font face="Arial Black"> Make Claim</a></li></font>
-      <li><a href="faq.php"><span style="font-size:1.0em" class="glyphicon glyphicon-question-sign"></span><font face="Arial Black"> FAQ</a></li></font>
-	  <li><a href="logout.php"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-log-out"></span> Logout</button></li></a>
+      <li><a href="faq_in.php"><span style="font-size:1.0em" class="glyphicon glyphicon-question-sign"></span><font face="Arial Black"> FAQ</a></li></font>
+	  <li><a href="contactus_in.php"><span style="font-size:1.0em" class="glyphicon glyphicon-phone-alt"></span><font face="Arial Black"> Contact Us</a></li></font>
     </ul>
+	<ul class="nav navbar-nav navbar-right">
+	  <li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span><font face="Arial Black"> Logout</a></li></font>
+	</ul> 
   </div>
 </nav>
  
  <font face ="Arial Black">
 <div class="container">
-  <h3>Enter Hours</h3>
+  <h2>Enter Hours</h2>
 </div>
 
 <?php
-if (isset($_POST['JID'])){
+if (isset($_POST['submit'])){
 	//get data
-	$JID = $_POST['JID'];
 	$DAILY_HOURS = $_POST['DAILY_HOURS'];
 	$DAILY_HOURS_DATE = $_POST['DAILY_HOURS_DATE'];
-	
-	if (!$JID) {
-		punt ("Please enter an job name");
-	}
 	
 	if (!$DAILY_HOURS){
 		punt ("Please enter hours.");
@@ -94,8 +70,11 @@ if (isset($_POST['JID'])){
 	// get a handle to the database
     $db = connectDB($DBHost, $DBUser, $DBPasswd, $DBName);
 	
+	$query = "SELECT DAILY_HOURS, DAILY_HOURS_DATE FROM hours WHERE DAILY_HOURS_DATE='$DAILY_HOURS_DATE', DAILY_HOURS='$DAILY_HOURS';";
+	$result = queryDB($query, $db);
 	
-	$query = "INSERT INTO hours(JID, DAILY_HOURS, DAILY_HOURS_DATE) VALUES ('$JID','$DAILY_HOURS', '$DAILY_HOURS_DATE');";
+	
+	$query = "INSERT INTO hours(DAILY_HOURS, DAILY_HOURS_DATE) VALUES ('$DAILY_HOURS', '$DAILY_HOURS_DATE');";
 	$result = queryDB($query, $db);
 	
 	//tell the result
@@ -111,18 +90,11 @@ if (isset($_POST['JID'])){
 <div class="col-xs-12">
 <form action=""  method="post" enctype="multipart/form-data">
   
-   <div class="form-group">
-	<label for="JID">Job</label>
-	<select class="form-control" name="JID">
-    <?php echo $jobOptions; ?>
-	</select>
-	</div>
-  
-  <p><b>Date:</b> <input type="text" name="DAILY_HOURS_DATE" id="datepicker"></p>
+  <p><b>Date:</b> <input type="text" id="datepicker"></p>
   
   <div class="form-group">
-        <label for="DAILY_HOURS">Hours Worked:</label>
-        <input type="number" name="DAILY_HOURS" min="1" max="100" step=".5"/>
+        <label for="hourlywage">Hours Worked:</label>
+        <input type="number" name="quantity" min="1" max="100" step=".5"/>
   </div>
   
   <button type="submit" class="btn btn-default">Submit</button>
@@ -151,8 +123,8 @@ if (isset($_POST['JID'])){
 	
 	while($row = nextTuple($result)) {
 		echo "\n <tr>";
-		echo "<td>" . $row['DAILY_HOURS'] . "</td>";
 		echo "<td>" . $row['DAILY_HOURS_DATE'] . "</td>";
+		echo "<td>" . $row['DAILY_HOURS'] . "</td>";
 		echo "</tr>";
 	}
 ?>

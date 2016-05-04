@@ -8,12 +8,11 @@ DROP TABLE IF EXISTS employer;
 DROP TABLE IF EXISTS non_profit;
 
 
-/* This is a very simple table for a mysql-php example */
-
 CREATE TABLE Users (
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR (30) NOT NULL,
   phone VARCHAR (15) NOT NULL,
+  entrylevel VARCHAR(10) NOT NULL,
   hashedPass VARCHAR(255) NOT NULL,
   email VARCHAR(45) UNIQUE NOT NULL,
   PRIMARY KEY (id)
@@ -69,5 +68,5 @@ CREATE TABLE claim (
     CLAIM_HOURS FLOAT NOT NULL,
 	PRIMARY KEY (CID),
 	CONSTRAINT fk_claim_id FOREIGN KEY (id) REFERENCES Users (id),
-	CONSTRAINT fk_claim_eid FOREIGN KEY (EID) REFERENCES employer (EID),
+	CONSTRAINT fk_claim_eid FOREIGN KEY (EID) REFERENCES employer (EID)
 );

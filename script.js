@@ -1,9 +1,12 @@
 $(function() {
-    $( "#datepicker" ).datepicker();
+    $( "#datepicker" ).datepicker({
+        dateFormat: "yy-mm-dd"
+    });
   });
 
 $(function() {
     $( "#from" ).datepicker({
+         dateFormat: "yy-mm-dd",
       defaultDate: "+1w",
       changeMonth: true,
       numberOfMonths: 3,
@@ -12,6 +15,7 @@ $(function() {
       }
     });
     $( "#to" ).datepicker({
+        dateFormat: "yy-mm-dd",
       defaultDate: "+1w",
       changeMonth: true,
       numberOfMonths: 3,

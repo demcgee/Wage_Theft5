@@ -49,45 +49,89 @@
   </center>
 </div>
 <!----------------->
-<!---List users--->
+<!---List PAYCHECK--->
 <!----------------->
 <div class="container">
 <div class="col-xs-12">
-	<h2><?php echo "Users"; ?></h2>
+	<h2><?php echo "Paycheck"; ?></h2>
 </div>
 </div>
 
+<!-- Table about Paycheck -->
 <div class="container">
 <div class="col-xs-12">
 <table class="table table-hover">
 
-<!-- Titles for table -->
-<thead>
-<tr>
-	<th>Email</th>
+<tr style="background:#ECCEF5 !important">
+	<td>Start date</td>
+	<td>End date</td>
+	<td>Hours</td>
+	<td>Net Pay</td>
 </tr>
-</thead>
-
 <tbody>
 <?php
-	// connect to database
-	$db = connectDB($DBHost,$DBUser,$DBPasswd,$DBName);
+	// get a handle to the database
+    $db = connectDB($DBHost, $DBUser, $DBPasswd, $DBName);
 	
-	// set up my query
-	$query = "SELECT email FROM Users ORDER BY email;";
+	 // prepare sql statement
+    $query = "SELECT HOURLY_WAGE, HOURS_PAID_FOR, NET_PAY, START_DATE, END_DATE FROM paycheck ORDER BY START_DATE;";
 	
 	// run the query
 	$result = queryDB($query, $db);
 	
 	while($row = nextTuple($result)) {
 		echo "\n <tr>";
-		echo "<td>" . $row['email'] . "</td>";
+		echo "<td>" . $row['START_DATE'] . "</td>";
+		echo "<td>" . $row['END_DATE'] . "</td>";
+		echo "<td>" . $row['HOURS_PAID_FOR'] . "</td>";
+		echo "<td>" . $row['NET_PAY'] . "</td>";
 		echo "</tr>";
 	}
 ?>
-
 </tbody>
 </table>
+
+<div class="container">
+<div class="col-xs-12">
+	<h2><?php echo "Claim"; ?></h2>
+</div>
+</div>
+<!-- Table about Claim -->
+<div class="container">
+<div class="col-xs-12">
+<table class="table table-hover">
+
+<tr style="background:#ECCEF5 !important">
+	<td>Employer</td>
+	<td>Start Date</td>
+	<td>End Date</td>
+	<td>Hours Shorted</td>
+</tr>
+
+<tbody>
+<?php
+	// get a handle to the database
+    $db = connectDB($DBHost, $DBUser, $DBPasswd, $DBName);
+	
+	 // prepare sql statement
+    $query = "SELECT EID, id, CLAIM_DATE_START, CLAIM_DATE_END, CLAIM_HOURS FROM claim ORDER BY EID;";
+	
+	// run the query
+	$result = queryDB($query, $db);
+	
+	while($row = nextTuple($result)) {
+		echo "\n <tr>";
+		echo "<td>" . $row['EID'] . "</td>";
+		echo "<td>" . $row['CLAIM_DATE_START'] . "</td>";
+		echo "<td>" . $row['CLAIM_DATE_END'] . "</td>";
+		echo "<td>" . $row['CLAIM_HOURS'] . "</td>";
+		echo "</tr>";
+	}
+?>
+</tbody>
+
+</table> 	
+	
 </div>
 </div>
 </body>

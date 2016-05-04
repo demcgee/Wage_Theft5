@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+
 <?php
 	include_once('config.php');
 	include_once('dbutils.php');
@@ -21,15 +23,13 @@
 <nav class="navbar navbar-default">
   <div style = "background:#A9D0F5 !important" class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="Home.php"><font face="Arial Black">Stop! Wage Theft</a></font>
+      <a class="navbar-brand" href="Home.php">Wage Theft</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="Home.php"><span style="font-size:1.0em" class="glyphicon glyphicon-home"></span><font face="Arial Black"> Home</a></li></font>
-      <li><a href="enterhours.php"><span style="font-size:1.0em" class="glyphicon glyphicon-time"></span><font face="Arial Black"> Enter Hours</a></li></font>
-      <li><a href="enterpaycheck.php"><span style="font-size:1.0em" class="glyphicon glyphicon-barcode"></span><font face="Arial Black"> Enter Paycheck</a></li></font>
-      <li><a href="Makeclaim.php"><span style="font-size:1.0em" class="glyphicon glyphicon-bullhorn"></span><font face="Arial Black"> Make Claim</a></li></font>
-      <li><a href="faq.php"><span style="font-size:1.0em" class="glyphicon glyphicon-question-sign"></span><font face="Arial Black"> FAQ</a></li></font>
-	  <li><a href="logout.php"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-log-out"></span> Logout</button></li></a>
+      <li class= "active"><a href="Home.php">Home</a></li>
+      <li><a href="enterhours.php">Enter Hours</a></li>
+	  <li><a href="enterpaycheck.php">Enter Paycheck</a></li>
+      <li><a href="faq.php">FAQ</a></li>
     </ul>
   </div>
 </nav>
@@ -38,27 +38,132 @@
   <h3>Enter Employer Information</h3>
 </div>
 
+<?php
+// Back to PHP to perform the search if one has been submitted. Note
+// that $_POST['submit'] will be set only if you invoke this PHP code as
+// the result of a POST action, presumably from having pressed Submit
+// on the form we just displayed above.
+if (isset($_POST['E_NAME'])) {
+//	echo '<p>we are processing form data</p>';
+//	print_r($_POST);
+
+	// get data from the input fields
+	$E_NAME = $_POST['E_NAME'];
+	$ADDRESS = $_POST['ADDRESS'];
+	$E_EMAIL = $_POST['E_EMAIL'];
+	
+	// check to make sure we have an email
+	if (!$E_NAME) {
+		punt ("Please enter a name");
+	}
+
+	if (!$ADDRESS) {
+		punt("Please enter an address");
+	}
+
+	if (!$E_EMAIL) {
+		punt("Please enter an email");
+	}
+
+	// check if address is already in database
+		// connect to database
+	$db = connectDB($DBHost,$DBUser,$DBPasswd,$DBName);
+	
+	// set up my query
+	$query = "SELECT ADDRESS FROM employer WHERE ADDRESS='$ADDRESS';";
+	
+	// run the query
+	$result = queryDB($query, $db);
+	
+	// check if the address is there
+	if (nTuples($result) > 0) {
+		punt("The address $ADDRESS is already in the database");
+	}
+	
+	// connect to database
+	$db = connectDB($DBHost,$DBUser,$DBPasswd,$DBName);
+	
+	// set up my query
+	$query = "INSERT INTO employer(E_NAME, ADDRESS, E_EMAIL) VALUES ('$E_NAME', '$ADDRESS', '$E_EMAIL');";
+	
+	// run the query
+	$result = queryDB($query, $db);
+	
+	// tell users that we added the employer to the database
+	echo "<div class='panel panel-default'>\n";
+	echo "\t<div class='panel-body'>\n";
+    echo "\t\tThe employer " . $E_NAME . " was added to the database\n";
+	echo "</div></div>\n";
+	
+}
+?>
+
 <div class="container">
 <div class="col-xs-12">
 <form action=""  method="post" enctype="multipart/form-data">
   
   <div class="form-group">
-	<label for="name">Name</label>
-	<input type="name" class="form-control" name="name"/>
+	<label for="E_NAME">Name</label>
+	<input type="text" class="form-control" name="E_NAME"/>
   </div>
   
   <div class="form-group">
-	<label for="address">Address</label>
-	<input type="address" class="form-control" name="address"/>
+	<label for="ADDRESS">Address</label>
+	<input type="text" class="form-control" name="ADDRESS"/>
 </div>
   
   <div class="form-group">
-	<label for="phone">E-mail</label>
-	<input type="e-mail" class="form-control" name="e-mail"/>
+	<label for="E_EMAIL">Email</label>
+	<input type="email" class="form-control" name="E_EMAIL"/>
 </div>
   
   <button type="submit" class="btn btn-default">Submit</button>
 </form>
+
+<!----------------->
+<!---List employers--->
+<!----------------->
+<div class="container">
+<div class="col-xs-12">
+	<h2><?php echo "Employer"; ?></h2>
+</div>
+</div>
+
+<div class="container">
+<div class="col-xs-12">
+<table class="table table-hover">
+
+<!-- Titles for table -->
+<thead>
+<tr>
+	<th>Name</th>
+</tr>
+</thead>
+
+<tbody>
+<?php
+	// connect to database
+	$db = connectDB($DBHost,$DBUser,$DBPasswd,$DBName);
+	
+	// set up my query
+	$query = "SELECT E_NAME FROM employer ORDER BY E_NAME;";
+	
+	// run the query
+	$result = queryDB($query, $db);
+	
+	while($row = nextTuple($result)) {
+		echo "\n <tr>";
+		echo "<td>" . $row['E_NAME'] . "</td>";
+		echo "</tr>";
+	}
+?>
+
+</tbody>
+</table>
+</div>
+</div>
+
+</div> <!-- closing bootstrap container -->
 
 </body>
 </html>

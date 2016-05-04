@@ -6,6 +6,29 @@
 	include_once("dbutils.php");
 ?>
 
+<?php
+	// Generating pull down menu for employers
+	
+	// connect to database
+	$db = connectDB($DBHost,$DBUser,$DBPasswd,$DBName);
+	
+	// set up my query
+	$query = "SELECT JID, JOB_TITLE FROM job ORDER BY JOB_TITLE;";
+	
+	// run the query
+	$result = queryDB($query, $db);
+	
+	// options for employers
+	$jobOptions = "";
+	
+	// go through all employers and put together pull down menu
+	while ($row = nextTuple($result)) {
+		$jobOptions .= "\t\t\t";
+		$jobOptions .= "<option value='";
+		$jobOptions .= $row['JID'] . "'>" . $row['JOB_TITLE'] . "</option>\n";
+	}
+?>
+
 <html lang="en">
 <head>
   <title>Stop! Wage Theft</title>
@@ -32,19 +55,16 @@
 <nav class="navbar navbar-default">
   <div style = "background:#A9D0F5 !important" class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="Home_in.php"><font face="Arial Black">Stop! Wage Theft</a></font>
+      <a class="navbar-brand" href="Home.php"><font face="Arial Black">Stop! Wage Theft</a></font>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="Home_in.php"><span style="font-size:1.0em" class="glyphicon glyphicon-home"></span><font face="Arial Black"> Home</a></li></font>
+      <li><a href="Home.php"><span style="font-size:1.0em" class="glyphicon glyphicon-home"></span><font face="Arial Black"> Home</a></li></font>
       <li><a href="enterhours.php"><span style="font-size:1.0em" class="glyphicon glyphicon-time"></span><font face="Arial Black"> Enter Hours</a></li></font>
       <li class ="active"><a href="enterpaycheck.php"><span style="font-size:1.0em" class="glyphicon glyphicon-barcode"></span><font face="Arial Black"> Enter Paycheck</a></li></font>
       <li><a href="Makeclaim.php"><span style="font-size:1.0em" class="glyphicon glyphicon-bullhorn"></span><font face="Arial Black"> Make Claim</a></li></font>
-      <li><a href="faq_in.php"><span style="font-size:1.0em" class="glyphicon glyphicon-question-sign"></span><font face="Arial Black"> FAQ</a></li></font>
-	  <li><a href="contactus_in.php"><span style="font-size:1.0em" class="glyphicon glyphicon-phone-alt"></span><font face="Arial Black"> Contact Us</a></li></font>
+      <li><a href="faq.php"><span style="font-size:1.0em" class="glyphicon glyphicon-question-sign"></span><font face="Arial Black"> FAQ</a></li></font>
+	  <li><a href="logout.php"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-log-out"></span> Logout</button></li></a>
     </ul>
-	<ul class="nav navbar-nav navbar-right">
-	  <li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span><font face="Arial Black"> Logout</a></li></font>
-	</ul> 
   </div>
 </nav>
  
@@ -54,16 +74,16 @@
 </div>
 
 <?php
-if (isset($_POST['submit'])){
+if (isset($_POST['JID'])){
 	//get data
-	$HOURLY_WAGE = $_POST['HOURLY_WAGE'];
+	$JID = $_POST['JID'];
 	$HOURS_PAID_FOR = $_POST['HOURS_PAID_FOR'];
 	$NET_PAY = $_POST['NET_PAY'];
 	$START_DATE = $_POST['START_DATE'];
 	$END_DATE = $_POST['END_DATE'];
 	
-	if (!$HOURLY_WAGE){
-		punt ("Please enter Hourly wage.");
+	if (!$JID) {
+		punt ("Please enter an job name");
 	}
 	
 	if (!$HOURS_PAID_FOR){
@@ -85,7 +105,7 @@ if (isset($_POST['submit'])){
 	// get a handle to the database
     $db = connectDB($DBHost, $DBUser, $DBPasswd, $DBName);
 	
-	$query = "INSERT INTO paycheck(HOURLY_WAGE, HOURS_PAID_FOR, NET_PAY, START_DATE, END_DATE) VALUES ('$HOURLY_WAGE', '$HOURS_PAID_FOR', '$NET_PAY', '$START_DATE', '$END_DATE');";
+	$query = "INSERT INTO paycheck(JID, HOURS_PAID_FOR, NET_PAY, START_DATE, END_DATE) VALUES ('$JID', '$HOURS_PAID_FOR', '$NET_PAY', '$START_DATE', '$END_DATE');";
 	
 	$result = queryDB($query, $db);
 	
@@ -100,31 +120,29 @@ if (isset($_POST['submit'])){
 <div class="col-xs-12">
 <form action=""  method="post" enctype="multipart/form-data">
 	
-
-    <div class="form-group">
-        <label for="hourlywage">Hourly Wage:</label>
-        <input type="number" name="quantity" min="1" max="100" step=".5"/>
-    </div>
-	
 	<div class="form-group">
-		<label for="hourspaidfor">Hours Paid For:</label>
-		<input type="number" name="yearreleased" min="5" max="100" step=".1">
-	</div>
-	<div class="form-group">
-		<label for="netpay">Net Pay:</label>
-		<input type="number" name="yearreleased" step= ".5">
+	<label for="JID">Job</label>
+	<select class="form-control" name="JID">
+    <?php echo $jobOptions; ?>
+	</select>
 	</div>
 	
-	<label for="from">From:</label>
-	<input type="text" id="from" name="from">
-	<label for="to">to</label>
-	<input type="text" id="to" name="to">
+	<div class="form-group">
+		<label for="HOURS_PAID_FOR">Hours Paid For:</label>
+		<input type="number" name="HOURS_PAID_FOR" min="5" max="100" step=".1">
+	</div>
+	<div class="form-group">
+		<label for="NET_PAY">Net Pay:</label>
+		<input type="number" name="NET_PAY" step= ".5">
+	</div>
+	
+	<label for="START_DATE">From:</label>
+	<input type="text" id="from" name="START_DATE">
+	<label for="END_DATE">to</label>
+	<input type="text" id="to" name="END_DATE">
 	<br><br>
-    <button type="submit" class="btn btn-default" onclick="myFunction()">Submit</button>
+    <button type="submit" class="btn btn-default">Submit</button>
 	  <script>
-  function myFunction(){
-	  alert("Submitted Successfully!");
-  }
   </script>
 </form><br>
 

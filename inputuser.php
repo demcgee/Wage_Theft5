@@ -79,16 +79,7 @@
 </div>
 </div>
 
-<div class="container">
-<form action="">
-<font size = 3><b>Check your status</font></b><br>
 
-	<input type="radio" name="type" value="Employer"> Employer <br>
-	<input type="radio" name="type" value="Non-profit"> Non-profit <br>
-	<input type="radio" name="type" value="Worker"> Worker <br>
-	<br>
-</form>
-</div>
 
 <?php
 // Back to PHP to perform the search if one has been submitted. Note
@@ -100,6 +91,7 @@ if (isset($_POST['submit'])) {
 //	print_r($_POST);
 
 	// get data from the input fields
+	$entrylevel = $_POST['entrylevel'];
 	$email = $_POST['email'];
 	$password1 = $_POST['password1'];
 	$password2 = $_POST['password2'];
@@ -107,6 +99,7 @@ if (isset($_POST['submit'])) {
 	$name = $_POST['name'];
 	
 	// check to make sure we have an email
+	
 	if (!$name) {
 		punt ("Please enter a name");
 	}
@@ -150,7 +143,7 @@ if (isset($_POST['submit'])) {
 	$hashedPass = crypt($password1, getSalt());
 	
 	// set up my query
-	$query = "INSERT INTO Users(email, hashedPass) VALUES ('$email', '$hashedPass');";
+	$query = "INSERT INTO Users(entrylevel, name, phone, email, hashedPass) VALUES ('$entrylevel', '$name', '$phone', '$email', '$hashedPass');";
 	
 	// run the query
 	$result = queryDB($query, $db);
@@ -170,6 +163,18 @@ if (isset($_POST['submit'])) {
 <div class="col-xs-12">
 
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+
+<div class="radio">
+	<label><input type = "radio" name="entrylevel" value="Employer"> Employer</label>
+</div>
+
+<div class="radio">
+	<label><input type = "radio" name="entrylevel" value="Non-Profit"> Non-Profit</label>
+</div>
+
+<div class="radio">
+	<label><input type = "radio" name="entrylevel" value="Worker"> Worker</label>
+</div>
 
 <div class="form-group">
 	<label for="name">Name (First,last)</label>

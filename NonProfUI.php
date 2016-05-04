@@ -42,9 +42,6 @@
 <br>
 
   <p><font size="5">This is the Non-Profit Dashboard (only viewable by Non-Profits)</font></p>
-  <button onclick="location.href='login.php'" class="btn btn-default"><span class="glyphicon glyphicon-log-in"></span> Login</button>
-   <button onclick="location.href='logout.php'" class="btn btn-default"><span class="glyphicon glyphicon-log-out"></span> Logout</button>
-
 
   </center>
 </div>

@@ -27,28 +27,28 @@
 	}
 ?>
 
+
+
 <html>
 <head>
-  <title>Input User</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="runnable.css" />
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <meta charset="utf-8">
-  <title>jQuery UI Datepicker - Default functionality</title>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-  <link rel="stylesheet" href="/resources/demos/style.css">
-    
-    <!-- Load SCRIPT.JS which will create datepicker for input field  -->
-    <script src="script.js"></script>
-    
-    <link rel="stylesheet" href="runnable.css" />
+	<title>
+		<?php echo "Input user - " . $Title; ?>
+	</title>
+
+	<!-- Following three lines are necessary for running Bootstrap -->
+	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>	
 </head>
+
 <body>
+<font face="Arial Black">
 <nav class="navbar navbar-default">
   <div style = "background:#A9D0F5 !important" class="container-fluid">
     <div class="navbar-header">
@@ -56,15 +56,17 @@
     </div>
     <ul class="nav navbar-nav">
       <li><a href="Home.php"><span style="font-size:1.0em" class="glyphicon glyphicon-home"></span><font face="Arial Black"> Home</a></li></font>
-      <li class="active"><a href="enterhours.php"><span style="font-size:1.0em" class="glyphicon glyphicon-time"></span><font face="Arial Black"> Enter Hours</a></li></font>
+	  <li><a href="jobform.php"><span style="font-size:1.0em" class="glyphicon glyphicon-briefcase"></span><font face="Arial Black"> Enter Job</a></li></font>
+      <li><a href="enterhours.php"><span style="font-size:1.0em" class="glyphicon glyphicon-time"></span><font face="Arial Black"> Enter Hours</a></li></font>
       <li><a href="enterpaycheck.php"><span style="font-size:1.0em" class="glyphicon glyphicon-barcode"></span><font face="Arial Black"> Enter Paycheck</a></li></font>
       <li><a href="Makeclaim.php"><span style="font-size:1.0em" class="glyphicon glyphicon-bullhorn"></span><font face="Arial Black"> Make Claim</a></li></font>
       <li><a href="faq.php"><span style="font-size:1.0em" class="glyphicon glyphicon-question-sign"></span><font face="Arial Black"> FAQ</a></li></font>
-	  <li><a href="Adminhome.php"><span style="font-size:1.0em" class="glyphicon glyphicon-user"></span><font face="Arial Black"> Admin Dashboard</a></li></font>
-	  <button onclick="location.href='logout.php'" class="btn btn-default"><span class="glyphicon glyphicon-log-out"></span> Logout</button>
+	  <li><a href="contactus.php"><span style="font-size:1.0em" class="glyphicon glyphicon-phone-alt"></span><font face="Arial Black"> Contact Us</a></li></font>
     </ul>
   </div>
 </nav>
+<div class="container">
+
 <div class="container">
 
 <!-- Page header -->
@@ -152,13 +154,14 @@ if (isset($_POST['submit'])) {
 	
 	// run the query
 	$result = queryDB($query, $db);
-	
+		
 	// tell users that we added the player to the database
 	echo "<div class='panel panel-default'>\n";
 	echo "\t<div class='panel-body'>\n";
     echo "\t\tThe user " . $email . " was added to the database\n";
 	echo "</div></div>\n";
 	
+	header('Location: login.php');
 }
 ?>
 
@@ -170,7 +173,7 @@ if (isset($_POST['submit'])) {
 
 <div class="form-group">
 	<label for="name">Name (First,last)</label>
-	<input type="text" class="form-control" name="name"/>
+	<input type="name" class="form-control" name="name"/>
 </div>
 
 <div class="form-group">
@@ -190,7 +193,7 @@ if (isset($_POST['submit'])) {
 
 <div class="form-group">
 	<label for="phone">Phone number</label>
-	<input type="tel" class="form-control" name="phone"/>
+	<input type="phone" class="form-control" name="phone"/>
 </div>
 
 <div class="form-group">
@@ -198,13 +201,20 @@ if (isset($_POST['submit'])) {
 	<select class="form-control" name="EID">
 <?php echo $employerOptions; ?>
 	</select>
-
-<button type="submit" class="btn btn-default" name="submit">Add</button>
-
-<p>Don't see your employer?</p>
-<div id="browse_app">
-  <a class="btn btn-large btn-info" href="employerform.php">Register Employer</a>
 </div>
+
+<div id="browse_app">
+  <p> Can't find your employer? <a class="btn btn-large btn-info" href="employerform.php">Register Employer</a> </p>
+</div>
+
+
+<button type="submit" class="btn btn-default" name="submit" onclick="myFunction()">Submit</button>
+
+<script>
+function myFunction(){
+	alert("Your information is saved successfully!");
+}
+</script>
 
 </form>
 
@@ -247,6 +257,7 @@ if (isset($_POST['submit'])) {
 		echo "<td>" . $row['email'] . "</td>";
 		echo "</tr>";
 	}
+	
 ?>
 
 </tbody>

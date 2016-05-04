@@ -50,16 +50,22 @@
       <a class="navbar-brand" href="Home.php">Wage Theft</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class= "active"><a href="Home.php">Home</a></li>
-      <li><a href="enterhours.php">Enter Hours</a></li>
-	  <li><a href="enterpaycheck.php">Enter Paycheck</a></li>
-      <li><a href="faq.php">FAQ</a></li>
+      <li><a href="Home_in.php"><span style="font-size:1.0em" class="glyphicon glyphicon-home"></span><font face="Arial Black"> Home</a></li></font>
+	<li class="active"><a href="jobform.php"><span style="font-size:1.0em" class="glyphicon glyphicon-briefcase"></span><font face="Arial Black"> Enter Job</a></li></font>
+      <li><a href="enterhours.php"><span style="font-size:1.0em" class="glyphicon glyphicon-time"></span><font face="Arial Black"> Enter Hours</a></li></font>
+      <li><a href="enterpaycheck.php"><span style="font-size:1.0em" class="glyphicon glyphicon-barcode"></span><font face="Arial Black"> Enter Paycheck</a></li></font>
+      <li><a href="Makeclaim.php"><span style="font-size:1.0em" class="glyphicon glyphicon-bullhorn"></span><font face="Arial Black"> Make Claim</a></li></font>
+      <li><a href="faq_in.php"><span style="font-size:1.0em" class="glyphicon glyphicon-question-sign"></span><font face="Arial Black"> FAQ</a></li></font>
+	<li><a href="contactus_in.php"><span style="font-size:1.0em" class="glyphicon glyphicon-phone-alt"></span><font face="Arial Black"> Contact Us</a></li></font>    
     </ul>
+	<ul class="nav navbar-nav navbar-right">
+	  <li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span><font face="Arial Black"> Logout</a></li></font>
+	</ul>
   </div>
 </nav>
   
 <div class="container">
-  <h3>Enter Job Information</h3>
+  <h2>Enter Job Information</h2>
 </div>
 
 <?php
@@ -148,12 +154,11 @@ if (isset($_POST['JOB_TITLE'])) {
 <table class="table table-hover">
 
 <!-- Titles for table -->
-<thead>
-<tr>
-	<th>Job</th>
-	<th>Employer</th>
+<tr style="background:#ECCEF5 !important">
+	<td>Job</td>
+	<td>Employer</td>
 </tr>
-</thead>
+
 
 <tbody>
 <?php

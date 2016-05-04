@@ -47,7 +47,7 @@
 <nav class="navbar navbar-default">
   <div style = "background:#A9D0F5 !important" class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="Home_in.php">font face="Arial Black">Stop! Wage Theft</a></font>
+      <a class="navbar-brand" href="Home_in.php"><font face="Arial Black">Stop! Wage Theft</a></font>
     </div>
     <ul class="nav navbar-nav">
       <li><a href="Home_in.php"><span style="font-size:1.0em" class="glyphicon glyphicon-home"></span><font face="Arial Black"> Home</a></li></font>

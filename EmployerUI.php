@@ -42,9 +42,6 @@
 <br>
 
   <p><font size="5">This is the Employer Dashboard (only viewable by Employer)</font></p>
-  <button onclick="location.href='login.php'" class="btn btn-default"><span class="glyphicon glyphicon-log-in"></span> Login</button>
-   <button onclick="location.href='logout.php'" class="btn btn-default"><span class="glyphicon glyphicon-log-out"></span> Logout</button>
-
 
   </center>
 </div>
@@ -86,6 +83,127 @@
 	}
 ?>
 
+</tbody>
+</table>
+
+<!----------------->
+<!---List JOB--->
+<!----------------->
+<div class="container">
+<div class="col-xs-12">
+	<h2><?php echo "Job"; ?></h2>
+</div>
+</div>
+
+
+<!--Table about Job-->
+<div class="container">
+<div class="col-xs-12">
+<table class="table table-hover">
+
+<tr style="background:#ECCEF5 !important">
+	<td>Job</td>
+	<td>Employer</td>
+</tr>
+<tbody>
+	<?php
+	// connect to database
+	$db = connectDB($DBHost,$DBUser,$DBPasswd,$DBName);
+	
+	// set up my query
+	$query = "SELECT JOB_TITLE FROM job ORDER BY JOB_TITLE;";
+	
+	// run the query
+	$result = queryDB($query, $db);
+	
+	while($row = nextTuple($result)) {
+		echo "\n <tr>";
+		echo "<td>" . $row['JOB_TITLE'] . "</td>";
+		echo "</tr>";
+	}
+?>
+</tbody>
+</table>
+
+<!----------------->
+<!---List Hours--->
+<!----------------->
+<div class="container">
+<div class="col-xs-12">
+	<h2><?php echo "Hours"; ?></h2>
+</div>
+</div>
+	
+	
+<!--Table about Hours-->
+div class="container">
+<div class="col-xs-12">
+<table class="table table-hover">
+
+<tr style="background:#ECCEF5 !important">
+	<td>Date</td>
+	<td>Hours</td>
+</tr>
+<tbody>
+	<?php
+	// get a handle to the database
+    $db = connectDB($DBHost, $DBUser, $DBPasswd, $DBName);
+	
+	 // prepare sql statement
+    $query = "SELECT DAILY_HOURS, DAILY_HOURS_DATE FROM hours ORDER BY DAILY_HOURS_DATE;";
+	
+	// run the query
+	$result = queryDB($query, $db);
+	
+	while($row = nextTuple($result)) {
+		echo "\n <tr>";
+		echo "<td>" . $row['DAILY_HOURS_DATE'] . "</td>";
+		echo "<td>" . $row['DAILY_HOURS'] . "</td>";
+		echo "</tr>";
+	}
+?>
+</tbody>
+</table>
+
+<!----------------->
+<!---List Paycheck--->
+<!----------------->
+<div class="container">
+<div class="col-xs-12">
+	<h2><?php echo "Paycheck"; ?></h2>
+</div>
+</div>
+<!-- Table about Paycheck -->
+<div class="container">
+<div class="col-xs-12">
+<table class="table table-hover">
+
+<tr style="background:#ECCEF5 !important">
+	<td>Start date</td>
+	<td>End date</td>
+	<td>Hours</td>
+	<td>Net Pay</td>
+</tr>
+<tbody>
+<?php
+	// get a handle to the database
+    $db = connectDB($DBHost, $DBUser, $DBPasswd, $DBName);
+	
+	 // prepare sql statement
+    $query = "SELECT HOURLY_WAGE, HOURS_PAID_FOR, NET_PAY, START_DATE, END_DATE FROM paycheck ORDER BY START_DATE;";
+	
+	// run the query
+	$result = queryDB($query, $db);
+	
+	while($row = nextTuple($result)) {
+		echo "\n <tr>";
+		echo "<td>" . $row['START_DATE'] . "</td>";
+		echo "<td>" . $row['END_DATE'] . "</td>";
+		echo "<td>" . $row['HOURS_PAID_FOR'] . "</td>";
+		echo "<td>" . $row['NET_PAY'] . "</td>";
+		echo "</tr>";
+	}
+?>
 </tbody>
 </table>
 </div>

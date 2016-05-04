@@ -4,16 +4,18 @@
 // Server information.
 $Proto = "http://";
 $Host = $_SERVER['SERVER_NAME'];
-$Base = "/~ykim/practice/project";
+$Base = "/~bschroder/WageTheft/";
 
 // Title to use in browser title bar.
-$Title = "Wage Theft";
-$Name = "Yujeong Kim";
-$Email = "yujeong-kim@uiowa.edu";
+$Title = "People";
+$Name = "Bschroder";
+$Email = "benjamin-schroder@uiowa.edu";
+
 
 // DB connection (from  mysql_db_info file).
-$DBUser = "ykim39";
-$DBName = "db_ykim39";
+$DBUser = "bschroder";
+$DBName = "db_bschroder";
 $DBHost = "dbdev.cs.uiowa.edu";
-$DBPasswd = "5ZUcsP=4HmVE";
+$DBPort = "3306";
+$DBPasswd = "_6p-CIKHAGct";
 ?>

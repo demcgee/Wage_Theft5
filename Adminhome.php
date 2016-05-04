@@ -61,13 +61,10 @@
 <div class="col-xs-12">
 <table class="table table-hover">
 
-<!-- Titles for table -->
-<thead>
-<tr>
-	<th>Email</th>
+<!-- Table about User -->
+<tr style="background:#ECCEF5 !important">
+	<td>Email</td>
 </tr>
-</thead>
-
 <tbody>
 <?php
 	// connect to database
@@ -85,9 +82,8 @@
 		echo "</tr>";
 	}
 ?>
-
-</tbody>
 </table>
+
 </div>
 </div>
 </body>

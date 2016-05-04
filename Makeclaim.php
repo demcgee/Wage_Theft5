@@ -106,11 +106,12 @@ if (isset($_POST['EID'])) {
 		// connect to database
 	$db = connectDB($DBHost,$DBUser,$DBPasswd,$DBName);
 	
-	session_start();
+		session_start();
 	$id = $_SESSION['id'];
+	
 
 	// set up my query
-	$query = "INSERT INTO claim(EID, id, CLAIM_DATE_START, CLAIM_DATE_END, CLAIM_HOURS) VALUES ('$EID', '$id', '$CLAIM_DATE_START', '$CLAIM_DATE_END', '$CLAIM_HOURS');";
+	$query = "INSERT INTO claim(EID, id, CLAIM_DATE_START, CLAIM_DATE_END, CLAIM_HOURS) VALUES ('$EID','$id', '$CLAIM_DATE_START', '$CLAIM_DATE_END', '$CLAIM_HOURS');";
 	
 	// run the query
 	$result = queryDB($query, $db);

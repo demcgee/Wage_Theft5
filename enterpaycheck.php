@@ -59,18 +59,22 @@
     </div>
     <ul class="nav navbar-nav">
       <li><a href="Home.php"><span style="font-size:1.0em" class="glyphicon glyphicon-home"></span><font face="Arial Black"> Home</a></li></font>
+	  <li><a href="jobform.php"><span style="font-size:1.0em" class="glyphicon glyphicon-briefcase"></span><font face="Arial Black"> Enter Job</a></li></font>
       <li><a href="enterhours.php"><span style="font-size:1.0em" class="glyphicon glyphicon-time"></span><font face="Arial Black"> Enter Hours</a></li></font>
       <li class ="active"><a href="enterpaycheck.php"><span style="font-size:1.0em" class="glyphicon glyphicon-barcode"></span><font face="Arial Black"> Enter Paycheck</a></li></font>
       <li><a href="Makeclaim.php"><span style="font-size:1.0em" class="glyphicon glyphicon-bullhorn"></span><font face="Arial Black"> Make Claim</a></li></font>
       <li><a href="faq.php"><span style="font-size:1.0em" class="glyphicon glyphicon-question-sign"></span><font face="Arial Black"> FAQ</a></li></font>
-	  <li><a href="logout.php"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-log-out"></span> Logout</button></li></a>
     </ul>
+
+	<ul class="nav navbar-nav navbar-right">
+	  <li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span><font face="Arial Black"> Logout</a></li></font>
+	</ul>
   </div>
 </nav>
  
  <font face ="Arial Black"> 
 <div class="container">
-  <h3>Enter Paycheck</h3>
+  <h2>Enter Paycheck</h2>
 </div>
 
 <?php

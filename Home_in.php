@@ -16,7 +16,7 @@
     <div class="navbar-header">
       <a class="navbar-brand" href="Home_in.php"><font face="Arial Black" >Stop! Wage Theft</a></font>
 	</div>
-
+<font face="Arial Black">
     <ul class="nav navbar-nav">
       <li class="active"><a href="Home_in.php"><span style="font-size:1.0em" class="glyphicon glyphicon-home"></span><font face="Arial Black"> Home</a></li></font>
 	  <li><a href="jobform.php"><span style="font-size:1.0em" class="glyphicon glyphicon-briefcase"></span><font face="Arial Black"> Enter Job</a></li></font>
@@ -25,11 +25,19 @@
       <li><a href="Makeclaim.php"><span style="font-size:1.0em" class="glyphicon glyphicon-bullhorn"></span><font face="Arial Black"> Make Claim</a></li></font>
       <li><a href="faq_in.php"><span style="font-size:1.0em" class="glyphicon glyphicon-question-sign"></span><font face="Arial Black"> FAQ</a></li></font>
 	  <li><a href="contactus_in.php"><span style="font-size:1.0em" class="glyphicon glyphicon-phone-alt"></span><font face="Arial Black"> Contact Us</a></li></font>
-    </ul>
+     <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>  Admin Dashboard <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+		  <li><a href="Adminhome.php">Administrator Interface</a></li>
+            <li><a href="EmployerUI.php">Employer Interface</a></li>
+            <li><a href="NonProfUI.php">Non Profit Interface</a></li>
+          </ul>
+        </li>
+	</ul>
 	<ul class="nav navbar-nav navbar-right">
       <li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span><font face="Arial Black"> Logout</a></li></font>
 	</ul>  
-	</div>
+	</div></font>
 
 </nav>
 
@@ -62,7 +70,7 @@
 <font face="Arial" size="1px">
 	<p align="right">Map from wagetheft.org </p>
 </div>
-  </ce
+
 
   </center>
 </div>

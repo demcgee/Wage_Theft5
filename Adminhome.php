@@ -32,6 +32,7 @@
       <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>  Admin Dashboard <span class="caret"></span></a>
           <ul class="dropdown-menu">
+            <li><a href="Adminhome.php">Administrator Interface</a></li>
             <li><a href="EmployerUI.php">Employer Interface</a></li>
             <li><a href="NonProfUI.php">Non Profit Interface</a></li>
           </ul>

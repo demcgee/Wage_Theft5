@@ -48,9 +48,9 @@
 <!----------------->
 <!---List Paycheck--->
 <!----------------->
-
+<div class="container">
+<div class="col-xs-12">
 	<h2><?php echo "Paycheck"; ?></h2>
-
 <!-- Table about Paycheck -->
 
 <table class="table table-hover">

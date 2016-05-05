@@ -46,17 +46,13 @@
   </center>
 </div>
 <!----------------->
-<!---List PAYCHECK--->
+<!---List Paycheck--->
 <!----------------->
-<div class="container">
-<div class="col-xs-12">
+
 	<h2><?php echo "Paycheck"; ?></h2>
-</div>
-</div>
 
 <!-- Table about Paycheck -->
-<div class="container">
-<div class="col-xs-12">
+
 <table class="table table-hover">
 
 <tr style="background:#ECCEF5 !important">
@@ -88,14 +84,11 @@
 </tbody>
 </table>
 
-<div class="container">
-<div class="col-xs-12">
+
 	<h2><?php echo "Claim"; ?></h2>
-</div>
-</div>
+
 <!-- Table about Claim -->
-<div class="container">
-<div class="col-xs-12">
+
 <table class="table table-hover">
 
 <tr style="background:#ECCEF5 !important">

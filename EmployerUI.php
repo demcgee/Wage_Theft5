@@ -45,43 +45,9 @@
 
   </center>
 </div>
-<!----------------->
-<!---List users--->
-<!----------------->
+
 <div class="container">
 <div class="col-xs-12">
-	<h2><?php echo "Users"; ?></h2>
-</div>
-</div>
-<div class="container">
-<div class="col-xs-12">
-<table class="table table-hover">
-
-<tr style="background:#ECCEF5 !important">
-	<td>Emil</td>
-</tr>
-
-
-<tbody>
-<?php
-	// connect to database
-	$db = connectDB($DBHost,$DBUser,$DBPasswd,$DBName);
-	
-	// set up my query
-	$query = "SELECT email FROM Users ORDER BY email;";
-	
-	// run the query
-	$result = queryDB($query, $db);
-	
-	while($row = nextTuple($result)) {
-		echo "\n <tr>";
-		echo "<td>" . $row['email'] . "</td>";
-		echo "</tr>";
-	}
-?>
-
-</tbody>
-</table>
 
 <!----------------->
 <!---List JOB--->

@@ -53,17 +53,14 @@
 	<h2><?php echo "Users"; ?></h2>
 </div>
 </div>
-
 <div class="container">
 <div class="col-xs-12">
 <table class="table table-hover">
 
-<!-- Titles for table -->
-<thead>
-<tr>
-	<th>Email</th>
+<tr style="background:#ECCEF5 !important">
+	<td>Emil</td>
 </tr>
-</thead>
+
 
 <tbody>
 <?php
@@ -89,16 +86,11 @@
 <!----------------->
 <!---List JOB--->
 <!----------------->
-<div class="container">
-<div class="col-xs-12">
-	<h2><?php echo "Job"; ?></h2>
-</div>
-</div>
 
+	<h2><?php echo "Job"; ?></h2>
 
 <!--Table about Job-->
-<div class="container">
-<div class="col-xs-12">
+
 <table class="table table-hover">
 
 <tr style="background:#ECCEF5 !important">
@@ -128,16 +120,13 @@
 <!----------------->
 <!---List Hours--->
 <!----------------->
-<div class="container">
-<div class="col-xs-12">
+
 	<h2><?php echo "Hours"; ?></h2>
-</div>
-</div>
+
 	
 	
 <!--Table about Hours-->
-div class="container">
-<div class="col-xs-12">
+
 <table class="table table-hover">
 
 <tr style="background:#ECCEF5 !important">
@@ -168,14 +157,11 @@ div class="container">
 <!----------------->
 <!---List Paycheck--->
 <!----------------->
-<div class="container">
-<div class="col-xs-12">
+
 	<h2><?php echo "Paycheck"; ?></h2>
-</div>
-</div>
+
 <!-- Table about Paycheck -->
-<div class="container">
-<div class="col-xs-12">
+
 <table class="table table-hover">
 
 <tr style="background:#ECCEF5 !important">

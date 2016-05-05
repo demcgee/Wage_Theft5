@@ -16,7 +16,7 @@
 </head>
 <body>
 
-
+<font face="Arial Black">
 <nav class="navbar navbar-default">
   <div style = "background:#A9D0F5 !important" class="container-fluid">
     <div class="navbar-header">
@@ -29,8 +29,17 @@
       <li><a href="Makeclaim.php"><span style="font-size:1.0em" class="glyphicon glyphicon-bullhorn"></span><font face="Arial Black"> Make Claim</a></li></font>
       <li><a href="faq_in.php"><span style="font-size:1.0em" class="glyphicon glyphicon-question-sign"></span><font face="Arial Black"> FAQ</a></li></font>
 	  <li><a href="contactus_in.php"><span style="font-size:1.0em" class="glyphicon glyphicon-phone-alt"></span><font face="Arial Black"> Contact Us</a></li></font>
-      <li class="active"><a href="Adminhome.php"><span style="font-size:1.0em" class="glyphicon glyphicon-user"></span><font face="Arial Black"> Admin Dashboard</a></li></font>
+      <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>  Admin Dashboard <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="EmployerUI.php">Employer Interface</a></li>
+            <li><a href="NonProfUI.php">Non Profit Interface</a></li>
+          </ul>
+        </li>
     </ul>
+		<ul class="nav navbar-nav navbar-right">
+      <li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span><font face="Arial Black"> Logout</a></li></font>
+	</ul>
   </div>
 </nav>
 
@@ -42,9 +51,6 @@
 <br>
 
   <p><font size="5">This is the Administrator Dashboard (only viewable by admin)</font></p>
-  <button onclick="location.href='login.php'" class="btn btn-default"><span class="glyphicon glyphicon-log-in"></span> Login</button>
-   <button onclick="location.href='logout.php'" class="btn btn-default"><span class="glyphicon glyphicon-log-out"></span> Logout</button>
-
 
   </center>
 </div>
@@ -56,11 +62,9 @@
 	<h2><?php echo "Users"; ?></h2>
 </div>
 </div>
-
 <div class="container">
 <div class="col-xs-12">
 <table class="table table-hover">
-
 <!-- Table about User -->
 <tr style="background:#ECCEF5 !important">
 	<td>Email</td>
